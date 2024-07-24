@@ -1,19 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="icon" type="image/jpg" href="{{ asset('images/logo.jpg') }}" />
+        <link rel="stylesheet" href="/build/app.css">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar">
+                <div>
+                    <a href="{{ path('app_home') }}" class="navbar-brand">
+                        <img class="logo" src="{{ asset('images/logo.jpg') }}" alt="Livre">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">Accueil</a>
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_backoffice'  %}active{% endif %}" href="{{ path('app_backoffice') }}">Back-Office</a>
+                        {% endif %}
+                        <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_products' %}active{% endif %}" href="{{ path('app_products') }}">Boutique</a>
+                        <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_cart' %}active{% endif %}" href="{{ path('app_cart') }}">Panier</a>
+                        <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_logout' %}active{% endif %}" href="{{ path('app_logout') }}">Se déconnecter</a>
+                    {% else %}
+                        <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_register' %}active{% endif %}" href="{{ path('app_register') }}">S'inscrire</a>
+                        <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_login' %}active{% endif %}" href="{{ path('app_login') }}">Se connecter</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </header>
+        
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer class="footer">
+            <p><strong>Téléphone :</strong> 0102030405</p>
+            <p><strong>Mail :</strong> knowledge@example.com
+        </footer>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="/build/runtime.js"></script>
+            <script src="/build/app.js"></script>
         {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
     </body>
 </html>

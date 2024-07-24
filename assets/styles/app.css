@@ -1,3 +1,32 @@
+@import './header.css';
+@import './home.css';
+@import './register.css';
+@import './login.css';
+@import './courses.css';
+@import './course.css';
+@import './lesson.css';
+@import './certifications.css';
+@import './cart.css';
+@import './backoffice.css';
+@import './footer.css';
+
 body {
-    background-color: lightgray;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+main {
+    margin: 30px 20px;
+}
+
+h1 {
+    color: #0074c7;
+}
+
+button {
+    background-color: #82b864;
+    color: #f1f8fc;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
 }
