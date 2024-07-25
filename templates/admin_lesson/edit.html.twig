@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la leçon{% endblock %}
+
+{% block body %}
+    <h1>Modifier la leçon</h1>
+
+    {{ include('admin_lesson/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    {{ include('admin_lesson/_delete_form.html.twig') }}<br>
+
+    <button class="btn" onclick="window.location.href='{{ path('app_admin_lesson_index') }}'">Retour à la liste</button>
+{% endblock %}

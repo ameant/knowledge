@@ -7,6 +7,9 @@
 
 {% block body %}
     <div>
-        hello admin
+        <a href="{{ path('app_admin_user_index') }}">Gérer les utilisateurs</a><br>
+        <a href="{{ path('app_admin_course_index') }}">Gérer les cursus</a><br>
+        <a href="{{ path('app_admin_lesson_index') }}">Gérer les leçons</a><br>
+        <a href="{{ path('app_admin_purchase_index') }}">Gérer les achats</a>
     </div>
 {% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cursus{% endblock %}
+
+{% block body %}
+    <h1>Liste des cursus</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ids</th>
+                <th>Thèmes</th>
+                <th>Noms</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for course in courses %}
+            <tr>
+                <td>{{ course.id }}</td>
+                <td>{{ course.theme.name }}</td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.price }} €</td>
+                <td>
+                    <button class="btn" onclick="window.location.href='{{ path('app_admin_course_show', {'id': course.id}) }}'">Afficher les détails</button>
+                    <button class="alert-btn" onclick="window.location.href='{{ path('app_admin_course_edit', {'id': course.id}) }}'">Modifier</button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune donnée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table><br>
+
+    <button class="btn" onclick="window.location.href='{{ path('app_admin_course_new') }}'">Créer un nouveau cursus</button>
+{% endblock %}

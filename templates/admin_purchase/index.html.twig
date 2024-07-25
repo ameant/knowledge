@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des achats{% endblock %}
+
+{% block body %}
+    <h1>Liste des achats</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Noms d'utilisateurs</th>
+                <th>Cursus</th>
+                <th>Leçons</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.id }}</td>
+                <td>{{ purchase.user.name }}</td>
+                <td>{{ purchase.course.name }}</td>
+                <td>{{ purchase.lesson.name }}</td>
+                <td>
+                    <button class="btn" onclick="window.location.href='{{ path('app_admin_purchase_show', {'id': purchase.id}) }}'">Afficher les détails</button>
+                    <button class="alert-btn" onclick="window.location.href='{{ path('app_admin_purchase_edit', {'id': purchase.id}) }}'">Modifier</button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Aucune donnée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table><br>
+
+    <button class="btn" onclick="window.location.href='{{ path('app_admin_purchase_new') }}'">Créer un nouvel achat</button>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des leçons{% endblock %}
+
+{% block body %}
+    <h1>Liste des leçons</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ids</th>
+                <th>Cursus</th>
+                <th>Noms</th>
+                <th>Prix</th>
+                <th>Contenus</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.id }}</td>
+                <td>{{ lesson.course.name }}</td>
+                <td>{{ lesson.name }}</td>
+                <td>{{ lesson.price }} €</td>
+                <td>{{ lesson.content }}</td>
+                <td>
+                    <button class="btn" onclick="window.location.href='{{ path('app_admin_lesson_show', {'id': lesson.id}) }}'">Afficher les détails</button>
+                    <button class="alert-btn" onclick="window.location.href='{{ path('app_admin_lesson_edit', {'id': lesson.id}) }}'">Modifier</button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucune donnée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table><br>
+
+    <button class="btn" onclick="window.location.href='{{ path('app_admin_lesson_new') }}'">Créer une nouvelle leçon</button>
+{% endblock %}

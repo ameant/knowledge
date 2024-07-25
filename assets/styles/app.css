@@ -1,13 +1,7 @@
 @import './header.css';
-@import './home.css';
-@import './register.css';
-@import './login.css';
-@import './courses.css';
-@import './course.css';
 @import './lesson.css';
 @import './certifications.css';
 @import './cart.css';
-@import './backoffice.css';
 @import './footer.css';
 
 body {
@@ -42,4 +36,8 @@ h2, h3 {
     border-radius: 5px;
     padding: 5px 15px;
     cursor: pointer;
+}
+
+.admin-link {
+    text-decoration: none;
 }

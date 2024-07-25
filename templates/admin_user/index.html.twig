@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ids</th>
+                <th>Noms d'utilisateurs</th>
+                <th>Rôles</th>
+                <th>Emails</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button class="btn" onclick="window.location.href='{{ path('app_admin_user_show', {'id': user.id}) }}'">Afficher les détails</button>
+                    <button class="alert-btn" onclick="window.location.href='{{ path('app_admin_user_edit', {'id': user.id}) }}'">Modifier</button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune donnée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table><br>
+
+    <button class="btn" onclick="window.location.href='{{ path('app_admin_user_new') }}'">Créer un nouvel utilisateur</button>
+{% endblock %}

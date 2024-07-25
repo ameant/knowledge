@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel achat{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel achat</h1>
+
+    {{ include('admin_purchase/_form.html.twig') }}
+
+    <button class="btn" onclick="window.location.href='{{ path('app_admin_purchase_index') }}'">Retour à la liste</button>
+{% endblock %}
