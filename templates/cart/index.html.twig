@@ -6,14 +6,31 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/amely/Documents/CEF/Devoirs/14 Profet final 3/knowledge/knowledge/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/amely/Documents/CEF/Devoirs/14 Profet final 3/knowledge/knowledge/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>
-    </ul>
+<div>
+    {% if cart is empty %}
+            <p colspan="3">Votre panier est vide</p>
+    {% else %}
+    {% set totalPrice = 0 %}
+    <section>
+        {% for id, item in cart %}
+            <div>
+                <p>{{ item.name }}</p>
+                <p>Prix : {{ item.price }} €</p>
+                <form method="post" action="{{ path('app_remove_from_cart', { 'id': id }) }}">
+                    <button class="alert-btn" type="submit">Retirer du panier</button>
+                </form>
+            </div>
+            {% set totalPrice = totalPrice + item.price %}
+        {% endfor %}
+    </section>
+    <section>
+        <div>
+            <p><strong>TOTAL : {{ totalPrice }} €</strong></p>
+        </div>
+        {% endif %}
+        <div>
+            <button class="btn">Finaliser ma commande</button>
+            <button class="btn" onclick="window.location.href='{{ path('app_courses') }}'">Continuer mes achats</button>
+        </div>
 </div>
 {% endblock %}

@@ -6,28 +6,25 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
-    <h1>Thèmes et cursus</h1>
-    <h2>Thèmes</h2>
-        <ul>
-            <li>Musique</li>
-            <li>Informatique</li>
-            <li>Jardinage</li>
-            <li>Cuisine</li>
-        </ul>
-    
-    <h3>Cursus</h3>
-        <ul>
-            <li><u>Musique :</u> Cursus d’initiation à la guitare 50€</li>
-            <li><u>Musique :</u> Cursus d’initiation au piano 50€</li>
-            <br>
-            <li><u>Informatique :</u> Cursus d’initiation au développement web 60€</li>
-            <br>
-            <li><u>Jardinage :</u> Cursus d’initiation au jardinage 30€</li>
-            <br>
-            <li><u>Cuisine :</u> Cursus d’initiation à la cuisine 44€</li>
-            <li><u>Cuisine :</u> Cursus d’initiation à l’art du dressage culinaire 48€</li>
-        </ul>
-</div>
+    <div>
+        <h1>Thèmes et cursus</h1>
+        <h2>Thèmes</h2>
+            <ul>
+            {% for theme in themes %}
+                <li>{{ theme.name }}</li>
+            {% endfor %}
+            </ul>
+        
+        <h3>Cursus</h3>
+            <ul>
+            {% for course in courses %}
+                <li>
+                    <u>{{ course.theme.name }} :</u> {{ course.name }} {{ course.price }}€
+                    {% if app.user %}
+                        <button class="btn" onclick="window.location.href='{{ path('app_course', { 'id': course.id }) }}'">Voir</button>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+    </div>
 {% endblock %}

@@ -2,19 +2,32 @@
 
 {% block title %}Détails de cursus{% endblock %}
 
-
 {% block stylesheets %}
 {% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/amely/Documents/CEF/Devoirs/14 Profet final 3/knowledge/knowledge/src/Controller/CourseController.php'|file_link(0) }}">src/Controller/CourseController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/amely/Documents/CEF/Devoirs/14 Profet final 3/knowledge/knowledge/templates/course/index.html.twig'|file_link(0) }}">templates/course/index.html.twig</a></code></li>
-    </ul>
+<div>
+    <h1>Détails d'un cursus</h1>
+    <div>
+        <p>{{ course.name }}</p>
+        <p>Prix : {{ course.price }} €</p>
+        <form method="post" action="{{ path('app_course', { 'id': course.id }) }}">
+            <input type="hidden" name="item_type" value="course">
+            <input type="hidden" name="item_id" value="{{ course.id }}">
+            <button class="btn" type="submit">Ajouter au panier</button>
+        </form>
+    </div>
+    <h2>Détails des leçons de ce cursus</h2>
+    <div>
+    {% for lesson in lessons %}
+        <p>{{ lesson.name }}</p>
+        <p>Prix : {{ lesson.price }} €</p>
+        <form method="post" action="{{ path('app_course', { 'id': course.id }) }}">
+            <input type="hidden" name="item_type" value="lesson">
+            <input type="hidden" name="item_id" value="{{ lesson.id }}">
+            <button class="btn" type="submit">Ajouter au panier</button>
+        </form>
+    {% endfor %}
+    </div>
 </div>
 {% endblock %}

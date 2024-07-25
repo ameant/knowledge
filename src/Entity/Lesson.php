@@ -18,7 +18,7 @@ class Lesson
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity=Course::class)
+     * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $course;
@@ -37,11 +37,6 @@ class Lesson
      * @ORM\Column(type="string", length=255)
      */
     private $content;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $validated  = false;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -68,14 +63,14 @@ class Lesson
         return $this->id;
     }
     
-    public function getCourseId(): ?Course
+    public function getCourse(): ?Course
     {
-        return $this->course_id;
+        return $this->course;
     }
 
-    public function setCourseId(?Course $course_id): self
+    public function setCourse(?Course $course): self
     {
-        $this->course_id = $course_id;
+        $this->course = $course;
 
         return $this;
     }
@@ -112,18 +107,6 @@ class Lesson
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function isValidated(): ?bool
-    {
-        return $this->validated;
-    }
-
-    public function setValidated(bool $validated): self
-    {
-        $this->validated = $validated;
 
         return $this;
     }

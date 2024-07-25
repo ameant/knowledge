@@ -17,10 +17,10 @@
         {{ form_row(registrationForm.email) }} <br>
         {{ form_row(registrationForm.plainPassword) }} <br>
 
-        <button type="submit" class="btn">S'inscrire</button><br><br><br>
+        <button class="btn" type="submit" class="btn">S'inscrire</button><br><br><br>
 
         <div class="mb-3 text">Déjà inscrit ?
-            <button onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
+            <button class="btn" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
         </div>
     {{ form_end(registrationForm) }}
 {% endblock %}

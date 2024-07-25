@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CourseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,11 +34,6 @@ class Course
      * @ORM\Column(type="integer")
      */
     private $price;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $validated = false;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -99,18 +96,6 @@ class Course
         return $this;
     }
 
-    public function isValidated(): ?bool
-    {
-        return $this->validated;
-    }
-
-    public function setValidated(bool $validated): self
-    {
-        $this->validated = $validated;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -157,5 +142,20 @@ class Course
         $this->updated_by = $updated_by;
 
         return $this;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="course", orphanRemoval=true)
+     */
+    private $lessons;
+
+    public function __construct()
+    {
+        $this->lessons = new ArrayCollection();
+    }
+
+    public function getLessons(): Collection
+    {
+        return $this->lessons;
     }
 }

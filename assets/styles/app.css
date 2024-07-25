@@ -22,8 +22,21 @@ h1 {
     color: #0074c7;
 }
 
-button {
+h2, h3 {
+    color:  #00497c;
+}
+
+.btn {
     background-color: #82b864;
+    color: #f1f8fc;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.alert-btn  {
+    background-color: #cd2c2e;
     color: #f1f8fc;
     border: none;
     border-radius: 5px;

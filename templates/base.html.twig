@@ -23,7 +23,7 @@
                     <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">Accueil</a>
                     {% if app.user %}
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_backoffice'  %}active{% endif %}" href="{{ path('app_backoffice') }}">Back-Office</a>
+                            <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_backoffice'  %}active{% endif %}" href="{{ path('app_backoffice') }}">Backoffice</a>
                         {% endif %}
                         <a class="navbar-link {% if app.request.attributes.get('_route') == 'app_courses' %}active{% endif %}" href="{{ path('app_courses') }}">Boutique</a>
                         {% if is_granted('ROLE_CUSTOMER') %}
