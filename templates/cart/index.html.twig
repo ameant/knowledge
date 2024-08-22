@@ -14,7 +14,7 @@
     <section>
         {% for id, item in cart %}
             <div>
-                <p>{{ item.name }}</p>
+                <h2>{{ item.name }}</h2>
                 <p>Prix : {{ item.price }} €</p>
                 <form method="post" action="{{ path('app_remove_from_cart', { 'id': id }) }}">
                     <button class="alert-btn" type="submit">Retirer du panier</button>
@@ -29,7 +29,7 @@
         </div>
         {% endif %}
         <div>
-            <button class="btn">Finaliser ma commande</button>
+            <button class="btn" onclick="window.location.href='{{ path('app_bought') }}'">Finaliser ma commande</button>
             <button class="btn" onclick="window.location.href='{{ path('app_courses') }}'">Continuer mes achats</button>
         </div>
 </div>

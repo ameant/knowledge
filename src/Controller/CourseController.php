@@ -16,13 +16,16 @@ class CourseController extends AbstractController
      */
     public function show(int $id, Request $request): Response
     {
+        // Fetch the course from the database using its ID.
         $course = $this->getDoctrine()->getRepository(Course::class)->find($id);
 
+        // If the course does not exist, throw a 404 error.
         if (!$course) {
             throw $this->createNotFoundException('Le cursus n\'existe pas');
         }
 
-        $lessons = $course->getLessons(); // Assuming you have a getLessons() method in Course entity
+        // Retrieve the lessons associated with the course.
+        $lessons = $course->getLessons();
 
         if ($request->isMethod('POST')) {
             $itemType = $request->request->get('item_type');
@@ -30,12 +33,14 @@ class CourseController extends AbstractController
             $session = $request->getSession();
             $cart = $session->get('cart', []);
 
+            // If the item type is 'course', add the course to the cart
             if ($itemType === 'course') {
                 $cart[$course->getId()] = [
                     'id' => $course->getId(),
                     'name' => $course->getName(),
                     'price' => $course->getPrice()
                 ];
+            // If the item type is 'lesson', add the lesson to the cart
             } elseif ($itemType === 'lesson') {
                 $lesson = $this->getDoctrine()->getRepository(Lesson::class)->find($itemId);
                 if ($lesson) {
@@ -51,6 +56,7 @@ class CourseController extends AbstractController
             return $this->redirectToRoute('app_cart');
         }
 
+        // Render the course page with the course and its lessons
         return $this->render('course/index.html.twig', [
             'course' => $course,
             'lessons' => $lessons,

@@ -30,7 +30,7 @@ class CartController extends AbstractController
         $session = $request->getSession();
         $cart = $session->get('cart', []);
 
-        // Romove item from cart
+        // Remove item from cart
         if (isset($cart[$id])) {
             unset($cart[$id]);
             $session->set('cart', $cart);
