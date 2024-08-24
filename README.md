@@ -16,13 +16,13 @@ Installer les dépendances :
 - composer install
 
 
-Créer la base de données :
-symfony console doctrine:database:create
-
-
 Informations de la base de données via le fichier .env et DATABASE_URL="mysql://root:@127.0.0.1:3306/knowledge?serverVersion=8.3.0&charset=utf8mb4"
 id db : root
 mdp vide
+
+
+Créer la base de données :
+symfony console doctrine:database:create
 
 
 Accès fixtures de la base de données
