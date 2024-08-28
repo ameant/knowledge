@@ -22,7 +22,10 @@ mdp vide
 
 
 Créer la base de données :
-symfony console doctrine:database:create
+- symfony console doctrine:database:create
+
+Exécuter les migrations :
+- symfony console doctrine:migrations:migrate
 
 
 Accès fixtures de la base de données
@@ -36,3 +39,13 @@ Accès fixtures de la base de données
 Lancer le serveur du projet en local :
 - cd knowledge
 - symfony serve
+
+
+Utiliser Symfony CLI :
+- Générer des entités : symfony console make:entity
+- Créer des contrôleurs : symfony console make:controller
+- Exécuter des tests : symfony console test
+
+Autres commandes utiles :
+- Mettre à jour les dépendances : composer update
+- Nettoyer le cache : symfony console cache:clear
