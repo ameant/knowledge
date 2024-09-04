@@ -18,7 +18,7 @@ Lien du projet en local :
 - symfony serve
 
 
-Accès fixtures base de données : fichier stubborn.sql
+Accès fixtures base de données : fichier knowledge.sql
 
 id db : root
 mdp vide
